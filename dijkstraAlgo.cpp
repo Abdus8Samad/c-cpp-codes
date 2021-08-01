@@ -1,4 +1,5 @@
-// Dijkstra Algorithm
+/* ---------- Dijkstra Algorithm ---------- */
+/* For undirected/directed graphs with positive weights only */
 
 #include <bits/stdc++.h>
 
@@ -18,8 +19,11 @@ int main(){
     }
     vector<int> weights(v, INT_MAX);
     vector<int> visited(v, 0);
-    weights[0] = 0;
-    // // For a single destination
+    int src;
+    cout << "Enter the Source : ";
+    cin >> src;
+    weights[src] = 0;
+    /* ----- For a single destination ----- */
     // int dest = 1;
     // while(true){
     //     int minWeight = INT_MAX, vert = -1;
@@ -34,6 +38,7 @@ int main(){
     //     for(int i = 0;i < adj[vert].size();i++){
     //         vector<int> vertex = adj[vert][i];
     //         int w = vertex[1], child = vertex[0];
+    //         if(visited[child]) continue;
     //         if(w + weights[vert] < weights[child]){
     //             weights[child] = w + weights[vert];
     //         }
@@ -52,10 +57,11 @@ int main(){
         for(int i = 0;i < adj[vert].size();i++){
             vector<int> vertex = adj[vert][i];
             int w = vertex[1], child = vertex[0];
+            if(visited[child]) continue;
             if(w + weights[vert] < weights[child]){
                 weights[child] = w + weights[vert];
             }
         }
     }
-    for(int i = 0;i < v;i++) cout << weights[i] << ", ";
+    for(int i = 0;i < v;i++) cout << i << ": " << weights[i] << "\n";
 }

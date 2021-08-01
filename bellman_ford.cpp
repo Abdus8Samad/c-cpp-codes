@@ -1,3 +1,11 @@
+/* ---------- Bellman Ford ----------*/
+/* Can be used in directed graphs and if weights are positive then for undirected graph as well */
+/* Fails to provide correct ans for graphs with negative weight cycles */
+/* Run bellman algo again and if any edge gets updated, that node is in a negative cycle */
+#include <iostream>
+#include <vector>
+#include <climits>
+
 // 8 13
 // 0 1 4
 // 5 1 3
@@ -12,9 +20,13 @@
 // 7 4 -1
 // 6 7 -1
 // 6 5 4
-#include <iostream>
-#include <vector>
-#include <climits>
+
+// 5 5
+// 0 1 2    
+// 1 2 1
+// 1 3 2
+// 2 3 -4
+// 2 4 3
 
 using namespace std;
 
@@ -32,9 +44,11 @@ int main(){
     int v, e;
     cin >> v >> e;
     vector<edge> edges;
-    vector<int> dist;
-    for(int i=0;i<v;i++) dist.push_back(INT_MAX);
-    dist[0] = 0;
+    vector<int> dist(v, INT_MAX);
+    int src;
+    cout << "Enter the Source : ";
+    cin >> src;
+    dist[src] = 0;
     for(int i=0;i<e;i++){
         int l, r, w;
         cin >> l >> r >> w;
@@ -50,6 +64,8 @@ int main(){
         }
     }
     int a = 0;
+    for(int i = 0;i < v;i++) cout << i << ": " << dist[i] << "\n";
+    cout << "\n";
     for(int i=0;i<e;i++){
         int l = edges[i].l;
         int r = edges[i].r;
@@ -59,5 +75,5 @@ int main(){
             break;
         }
     }
-    cout << (a ? "YES" : "NO") << "\n";
+    cout << (a ? "Negative Cycle Is Present" : "No Negative Cycle Present") << "\n";
 }

@@ -1,3 +1,5 @@
+/* ---------- Topological Sorting ---------- */
+/* Only for Directed Acyclic Graph which is logical */
 #include <iostream>
 #include <vector>
 
@@ -72,3 +74,5 @@ int main(){
 // 2 3
 // 3 1
 // 5 2
+// Output
+// 5 4 2 3 1 0
