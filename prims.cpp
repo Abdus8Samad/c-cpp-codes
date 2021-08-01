@@ -63,4 +63,5 @@ int main(){
     }
     cout << "The Mst Is : \n";
     for(int i = 1;i < v;i++) cout << parents[i] << " " << i << " " << weights[i] << "\n";
-}
+    while(p != -1){
+        cout << p << ", ";
